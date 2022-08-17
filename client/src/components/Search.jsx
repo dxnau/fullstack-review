@@ -18,7 +18,6 @@ class Search extends React.Component {
   }
 
   search() {
-    console.log('Searching for: ', this.state.term);
     this.props.onSearch(this.state.term);
   }
 

@@ -30,14 +30,13 @@ let save = (repos) => {
     return obj;
   });
 
-  return Repo.create(map).catch((err) => err);
+  return Repo.create(map).catch((err) => console.log(err));
 }
 
 let retrieve = () => {
   return Repo.find({})
   .limit(25)
-  //Sorting from descending order
-  .sort({stars: -1})
+  .sort({stars: 'descending'})
   .catch((err) => {console.log('Error finding repos')});
 }
 

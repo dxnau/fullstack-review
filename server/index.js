@@ -27,8 +27,7 @@ app.get('/repos', function (req, res) {
   // This route should send back the top 25 repos
   db.retrieve()
   .then((data) => {
-    console.log('Data is: ', data);
-    res.status(200).send('Successfully retrieved top 25 repos!');
+    res.status(200).send(data);
   })
   .catch((err) => {
     res.status(404).send('Error retrieving repos');

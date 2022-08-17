@@ -15,15 +15,24 @@ class App extends React.Component {
 
   search (term) {
     console.log(`${term} was searched`);
-    axios.post('/repos', {
-      gitHubName: term,
+    axios.post('/repos', {gitHubName: term})
+    .then(() => {
+      axios.get('/repos')
+      .then((response) => {
+        this.setState({repos: response.data})
+      })
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  }
+
+  componentDidMount() {
+    axios.get('/repos')
+      .then((response) => {
+        this.setState({repos: response.data});
+      })
+      .catch((err) => {
+        console.log('Error mounting data!')
+        return err;
+      })
   }
 
   render () {
